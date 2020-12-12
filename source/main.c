@@ -94,16 +94,16 @@ int main(int argc, char** argv) {
             if (e.type == SDL_QUIT) {
                 break;
             }
-
+            // Start or pause the emulation
             if (e.type == SDL_KEYDOWN && keys[SDL_SCANCODE_SPACE]) {
                 emuRun ^= 1;
             }
 
             if (e.type == SDL_KEYDOWN)
                 INPUT_checkKeyPressed(mip.input, keys);
-
+            
+            // Execute the simulation cycle by cycle
             if (emuRun == 0 && e.type == SDL_KEYDOWN && keys[SDL_SCANCODE_P]) {
-                // We execute the program step by step
                     CHIP8_clock(&mip);
             }
         }
